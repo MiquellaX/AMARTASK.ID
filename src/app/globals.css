@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+*,
+html {
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --background: #e7e5e4;
+    --foreground: #0c0a09;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --background: #e7e5e4;
+        --foreground: #0c0a09;
+    }
+}
+
+body {
+    color: var(--foreground);
+    background: var(--background);
+    cursor: default;
+}
+
+@layer utilities {
+    .vignette {
+        mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+    }
+}
+
+@layer components {
+    body {
+        @apply tracking-wider;
+    }
+
+    .karma-hover-effect {
+        @apply relative inline-block cursor-pointer;
+    }
+
+    .karma-hover-effect::after {
+        @apply content-[''] absolute bottom-0 left-0 w-0 h-0.5 bg-current transition-all duration-300 ease-in-out;
+    }
+
+    .karma-hover-effect:hover::after,
+    .karma-hover-effect.active::after {
+        @apply w-full;
+    }
+
+    .karma-hover-effect.active {
+        @apply dark:text-white text-stone-950;
+    }
+
+    .right-header-icons {
+        @apply cursor-pointer w-5 h-5 stroke-1 transition duration-200 hover:scale-113;
+    }
+
+    .left-header-icons {
+        @apply cursor-pointer w-6 h-6 stroke-1 transition duration-200 hover:scale-113;
+    }
+
+    .close-icons {
+        @apply cursor-pointer w-8 h-8 stroke-1 transition duration-200 hover:scale-113;
+    }
+
+    #nprogress .spinner {
+        @apply w-20 h-20;
+    }
+}
